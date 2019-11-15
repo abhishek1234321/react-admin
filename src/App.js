@@ -1,9 +1,12 @@
+//@link: https://marmelab.com/react-admin/Tutorial.html
+
 import React from 'react';
 import { Admin, Resource, ListGuesser, EditGuesser } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 import PostIcon from '@material-ui/icons/Book';
 import UserIcon from '@material-ui/icons/Group';
 
+import AuthProvider from './AuthProvider';
 import Dashboard from './Components/Dashboard';
 import UsersList from './Components/UsersList';
 import PostsList from './Components/PostsList';
@@ -13,7 +16,7 @@ import PostEdit from './Components/PostEdit';
 const dataProvider = jsonServerProvider('http://jsonplaceholder.typicode.com');
 
 const App = () => (
-  <Admin dashboard={Dashboard} dataProvider={dataProvider}>
+  <Admin dashboard={Dashboard} dataProvider={dataProvider} authProvider={AuthProvider}>
     <Resource name="posts" list={PostsList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
     <Resource name="users" list={UsersList} icon={UserIcon} />
   </Admin>
